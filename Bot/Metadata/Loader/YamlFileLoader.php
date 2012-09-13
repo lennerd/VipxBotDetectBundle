@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the VipxBotDetectBundle package.
  *
  * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
@@ -17,6 +17,12 @@ use Vipx\BotDetectBundle\Bot\Metadata\Metadata;
 
 class YamlFileLoader extends FileLoader
 {
+
+    /**
+     * @param mixed $file
+     * @param null|string $type
+     * @return Metadata[]
+     */
     public function load($file, $type = null)
     {
         $file = $this->locator->locate($file);
@@ -27,6 +33,11 @@ class YamlFileLoader extends FileLoader
         return $this->parseBots($content);
     }
 
+    /**
+     * @param mixed $resource
+     * @param null|string $type
+     * @return bool
+     */
     public function supports($resource, $type = null)
     {
         return is_string($resource) && 'yml' === pathinfo($resource, PATHINFO_EXTENSION);
@@ -50,6 +61,12 @@ class YamlFileLoader extends FileLoader
         }
     }*/
 
+    /**
+     * Parses all bot metadatas
+     *
+     * @param $content
+     * @return array
+     */
     private function parseBots($content)
     {
         if (!isset($content['bots'])) {

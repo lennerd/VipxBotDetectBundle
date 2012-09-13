@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the VipxBotDetectBundle package.
  *
  * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
@@ -17,18 +17,30 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 
+/**
+ * A kernel.request listener, which automatically authenticate visiting bots.
+ */
 class BotAuthenticationListener
 {
 
     private $context;
     private $detector;
 
+    /**
+     * @param \Symfony\Component\Security\Core\SecurityContextInterface $context
+     * @param \Vipx\BotDetectBundle\Bot\BotDetector $detector
+     */
     public function __construct(SecurityContextInterface $context, BotDetector $detector)
     {
         $this->context = $context;
         $this->detector = $detector;
     }
 
+    /**
+     * Listens to the kernel.request events and sets a bot token if the visitor is a spider or crawler
+     *
+     * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {

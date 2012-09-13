@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the VipxBotDetectBundle package.
  *
  * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
@@ -12,7 +12,7 @@
 namespace Vipx\BotDetectBundle\Security;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Vipx\BotDetectBundle\Bot\BotMetadata;
+use Vipx\BotDetectBundle\Bot\Metadata\Metadata;
 
 class BotToken extends AnonymousToken
 {
@@ -20,13 +20,11 @@ class BotToken extends AnonymousToken
     private $metadata;
 
     /**
-     * Constructor.
-     *
-     * @param string $key   The key shared with the authentication provider
-     * @param string $user  The user
-     * @param Role[] $roles An array of roles
+     * @param string $key
+     * @param \Vipx\BotDetectBundle\Bot\Metadata\Metadata $metadata
+     * @param array $roles
      */
-    public function __construct($key, BotMetadata $metadata, array $roles = array())
+    public function __construct($key, Metadata $metadata, array $roles = array())
     {
         if (!in_array('ROLE_BOT', $roles)) {
             $roles[] = 'ROLE_BOT';
@@ -37,7 +35,14 @@ class BotToken extends AnonymousToken
         parent::__construct($key, ucfirst($metadata->getType()) . ' (' . $metadata->getName() . ')' , $roles);
     }
 
-    public static function fromAnonymousToken(BotMetadata $metadata, AnonymousToken $token)
+    /**
+     * A shortcut for creating a bot token from an anonymous token
+     *
+     * @param \Vipx\BotDetectBundle\Bot\Metadata\Metadata $metadata
+     * @param \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken $token
+     * @return BotToken
+     */
+    public static function fromAnonymousToken(Metadata $metadata, AnonymousToken $token)
     {
         return new self($token->getKey(), $metadata, $token->getRoles());
     }

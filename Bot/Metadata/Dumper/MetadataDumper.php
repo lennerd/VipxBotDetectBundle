@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the VipxBotDetectBundle package.
  *
  * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
@@ -16,12 +16,17 @@ abstract class MetadataDumper implements MetadataDumperInterface
 
     private $metadatas = array();
 
+    /**
+     * @param \Vipx\BotDetectBundle\Bot\Metadata\Metadata[] $metadatas
+     */
     public function __construct(array $metadatas)
     {
         $this->metadatas = $metadatas;
     }
 
     /**
+     * Returns all bot metadatas
+     *
      * @return \Vipx\BotDetectBundle\Bot\Metadata\Metadata[]
      */
     public function getMetadatas()

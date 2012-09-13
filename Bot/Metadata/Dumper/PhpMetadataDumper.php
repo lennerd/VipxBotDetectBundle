@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the VipxBotDetectBundle package.
  *
  * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
@@ -14,6 +14,9 @@ namespace Vipx\BotDetectBundle\Bot\Metadata\Dumper;
 class PhpMetadataDumper extends MetadataDumper
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function dump()
     {
         return <<<EOF

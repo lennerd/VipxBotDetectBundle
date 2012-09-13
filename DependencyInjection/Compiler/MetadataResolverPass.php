@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the VipxBotDetectBundle package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,9 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Adds tagged routing.loader services to routing.resolver service
- *
- * @author Fabien Potencier <fabien@symfony.com>
+ * Adds tagged vipx_bot_detect.metadata.loader services to vipx_bot_detect.metadata.resolver service
  */
 class MetadataResolverPass implements CompilerPassInterface
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the VipxBotDetectBundle package.
  *
  * (c) Lennart Hildebrandt <http://github.com/lennerd>
  *
@@ -27,6 +27,13 @@ class Metadata implements MetadataInterface
     private $type = array();
     private $agentMatch = self::AGENT_MATCH_REGEXP;
 
+    /**
+     * @param string $name
+     * @param string $agent
+     * @param null|string $ip
+     * @param string $type
+     * @param string $agentMatch
+     */
     public function __construct($name, $agent, $ip = null, $type = self::TYPE_BOT, $agentMatch = self::AGENT_MATCH_REGEXP)
     {
         $this->name = $name;
@@ -36,31 +43,57 @@ class Metadata implements MetadataInterface
         $this->agentMatch = $agentMatch;
     }
 
+    /**
+     * Returns the agent of the bot
+     *
+     * @return string
+     */
     public function getAgent()
     {
         return $this->agent;
     }
 
+    /**
+     * Returns the type of the agent check
+     *
+     * @return string
+     */
     public function getAgentMatch()
     {
         return $this->agentMatch;
     }
 
+    /**
+     * Returns the ip of the bot
+     *
+     * @return null|string
+     */
     public function getIp()
     {
         return $this->ip;
     }
 
+    /**
+     * Returns the type of the bot
+     *
+     * @return string
+     */
     public function getType()
     {
         return $this->type;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function match($agent, $ip)
     {
         if ((self::AGENT_MATCH_EXACT === $this->agentMatch && $this->agent !== $agent) ||
