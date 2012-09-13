@@ -27,7 +27,7 @@ class PhpMetadataDumper extends MetadataDumper
  * by the VipxBotDetectBundle.
  */
 return array(
-    {$this->dumpMetadatas()}
+{$this->dumpMetadatas()}
 );
 EOF;
     }
@@ -35,11 +35,11 @@ EOF;
     private function dumpMetadatas()
     {
         $metadatas = $this->getMetadatas();
-        $dump = '';
+        $dump = array();
 
         foreach ($metadatas as $name => $metadata) {
             /* $ip = null, $type = self::TYPE_BOT, $agentMatch = self::AGENT_MATCH_REGEXP */
-            $dump .= sprintf("    '%s' => new %s('%s', '%s', %s, '%s', '%s'),\n",
+            $dump[] = sprintf("    '%s' => new %s('%s', '%s', %s, '%s', '%s'),",
                 $name,
                 get_class($metadata),
                 $name,
@@ -49,7 +49,7 @@ EOF;
                 $metadata->getAgentMatch());
         }
 
-        return $dump;
+        return implode($dump, "\n");
     }
 
 }
