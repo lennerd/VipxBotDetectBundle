@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\Resource\FileResource;
 
-class BotDetector
+class BotDetector implements BotDetectorInterface
 {
 
     private $metadatas;
@@ -94,8 +94,7 @@ class BotDetector
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return null|\Vipx\BotDetectBundle\Bot\Metadata\Metadata
+     * {@inheritdoc}
      */
     public function detect(Request $request)
     {

@@ -12,7 +12,7 @@
 namespace Vipx\BotDetectBundle\Security;
 
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Vipx\BotDetectBundle\Bot\BotDetector;
+use Vipx\BotDetectBundle\Bot\BotDetectorInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
@@ -30,7 +30,7 @@ class BotAuthenticationListener
      * @param \Symfony\Component\Security\Core\SecurityContextInterface $context
      * @param \Vipx\BotDetectBundle\Bot\BotDetector $detector
      */
-    public function __construct(SecurityContextInterface $context, BotDetector $detector)
+    public function __construct(SecurityContextInterface $context, BotDetectorInterface $detector)
     {
         $this->context = $context;
         $this->detector = $detector;

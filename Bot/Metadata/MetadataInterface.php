@@ -14,6 +14,15 @@ namespace Vipx\BotDetectBundle\Bot\Metadata;
 interface MetadataInterface
 {
 
+    const AGENT_MATCH_EXACT = 'exact';
+    const AGENT_MATCH_REGEXP = 'regexp';
+
+    const TYPE_BOT = 'bot';
+    const TYPE_CRAWLER = 'crawler';
+    const TYPE_SPIDER = 'spider';
+    const TYPE_BAD_BOT = 'bad_bot';
+    const TYPE_AGENT = 'agent';
+
     /**
      * Returns the name of the bot
      *
@@ -29,5 +38,33 @@ interface MetadataInterface
      * @return bool
      */
     function match($agent, $ip);
+
+    /**
+     * Returns the agent of the bot
+     *
+     * @return string
+     */
+    function getAgent();
+
+    /**
+     * Returns the type of the agent check
+     *
+     * @return string
+     */
+    function getAgentMatch();
+
+    /**
+     * Returns the ip of the bot
+     *
+     * @return null|string
+     */
+    function getIp();
+
+    /**
+     * Returns the type of the bot
+     *
+     * @return string
+     */
+    function getType();
 
 }

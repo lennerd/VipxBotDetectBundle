@@ -14,15 +14,6 @@ namespace Vipx\BotDetectBundle\Bot\Metadata;
 class Metadata implements MetadataInterface
 {
 
-    const AGENT_MATCH_EXACT = 'exact';
-    const AGENT_MATCH_REGEXP = 'regexp';
-
-    const TYPE_BOT = 'bot';
-    const TYPE_CRAWLER = 'crawler';
-    const TYPE_SPIDER = 'spider';
-    const TYPE_BAD_BOT = 'bad_bot';
-    const TYPE_AGENT = 'agent';
-
     private $name;
     private $agent;
     private $ip = null;
@@ -46,9 +37,7 @@ class Metadata implements MetadataInterface
     }
 
     /**
-     * Returns the agent of the bot
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getAgent()
     {
@@ -56,9 +45,7 @@ class Metadata implements MetadataInterface
     }
 
     /**
-     * Returns the type of the agent check
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getAgentMatch()
     {
@@ -66,9 +53,7 @@ class Metadata implements MetadataInterface
     }
 
     /**
-     * Returns the ip of the bot
-     *
-     * @return null|string
+     * {@inheritdoc}
      */
     public function getIp()
     {
@@ -76,9 +61,7 @@ class Metadata implements MetadataInterface
     }
 
     /**
-     * Returns the type of the bot
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getType()
     {
