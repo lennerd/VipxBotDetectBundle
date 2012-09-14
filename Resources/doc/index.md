@@ -77,15 +77,14 @@ class BotController extends Controller
 
 ### Resource File
 
-The bundle comes shipped with two different metadata files. The `basic.yml` file holds the main known bots. The `extended.yml` also has informations about some spam bots, spiders and crawlers of smaller web services.
-
+The bundle comes shipped with different metadata files sorting metadata by type. The `basic.yml` file holds the main known bots. The `extended.yml` also has informations about some bots of smaller web services. They are both importing metadata files for each type of bot (e.g. `extended_validator.yml` or `basic_validator.yml`).
 __Notice:__ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.
 
-The bundle is preconfigured to use the `basic.yml` file if needed. To change it, you can simply change the configuration:
+The bundle is preconfigured to use the `Resources/metadata/basic_bot.yml` file. If you want for example only the basic validator bots, you can simply change the configuration:
 
 ``` yaml
 vipx_bot_detect:
-    resource: "@VipxBotDetectBundle/Resources/metadata/extended.yml"
+    resource: "@VipxBotDetectBundle/Resources/metadata/basic_validator.yml"
 ```
 
 ### Cache File
