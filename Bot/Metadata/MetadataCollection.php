@@ -20,9 +20,15 @@ class MetadataCollection
     private $resources = array();
     private $metadatas = array();
 
-    public function addResource(ResourceInterface $resource)
+    public function addCollection(MetadataCollection $collection)
     {
-        $this->resources[] = $resource;
+        foreach ($collection->getMetadatas() as $metadata) {
+            $this->addMetadata($metadata);
+        }
+
+        foreach ($collection->getResources() as $resource) {
+            $this->addResource($resource);
+        }
     }
 
     public function addMetadata(MetadataInterface $metadata)
@@ -30,14 +36,19 @@ class MetadataCollection
         $this->metadatas[$metadata->getName()] = $metadata;
     }
 
-    public function getResources()
-    {
-        return $this->resources;
-    }
-
     public function getMetadatas()
     {
         return $this->metadatas;
+    }
+
+    public function addResource(ResourceInterface $resource)
+    {
+        $this->resources[] = $resource;
+    }
+
+    public function getResources()
+    {
+        return $this->resources;
     }
 
 }
