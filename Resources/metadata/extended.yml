@@ -1,9 +1,3 @@
-# Full list
-# Base on :
-# * Manage_bots for phpBB 3
-# * Updated by Pony99CA
-# * http://www.phpbb.com/community/viewtopic.php?p=12119145#p12119145
-
 imports:
      - { resource: basic.yml }
 

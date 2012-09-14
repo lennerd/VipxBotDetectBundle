@@ -2,8 +2,6 @@
 
 This bundle adds a detector service to your Syfmony 2 project for detecting different crawlers and spiders.
 
-The list of bots is coming from the plugin [gbBotDetectPlugin](http://www.symfony-project.org/plugins/gbBotDetectPlugin) created by Philippe Gamache.
-
 [![Build Status](https://secure.travis-ci.org/lennerd/VipxBotDetectBundle.png)](http://travis-ci.org/lennerd/VipxBotDetectBundle)
 
 ## Documentation
@@ -14,3 +12,7 @@ The list of bots is coming from the plugin [gbBotDetectPlugin](http://www.symfon
 
 - Add a `robots.txt` generator
 - Add additional meta data loaders (xml, php)
+
+## Credits
+
+The list of bots is coming from `Manage_bots`, updated by Pony99CA ([www.phpbb.com/community/](http://www.phpbb.com/community/viewtopic.php?p=12119145#p12119145));
