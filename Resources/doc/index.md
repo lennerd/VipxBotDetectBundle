@@ -106,7 +106,7 @@ vipx_bot_detect:
     use_listener: true
 ```
 
-Now the `security.context` services holds a special bot token with informations about the visiting bot. This token also has the `ROLE_BOT` role now, which you can simply use in your controller.
+Now the `security.context` service holds a special bot token with informations about the visiting bot. This token also has the `ROLE_BOT` role now, which you can simply use in your controller.
 
 ``` php
 <?php

@@ -12,5 +12,5 @@ The list of bots is coming from the plugin [gbBotDetectPlugin](http://www.symfon
 
 ## ToDo's
 
-- Add a `robot.txt` generator
+- Add a `robots.txt` generator
 - Add additional meta data loaders (xml, php)
