@@ -79,7 +79,7 @@ class BotController extends Controller
 
 The bundle comes shipped with two different metadata files. The `basic.yml` file holds the main known bots. The `extended.yml` also has informations about some spam bots, spiders and crawlers of smaller web services.
 
-_Notice:_ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.*
+__Notice:__ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.
 
 The bundle is preconfigured to use the `basic.yml` file if needed. To change it, you can simply change the configuration:
 
@@ -90,16 +90,16 @@ vipx_bot_detect:
 
 ### Cache File
 
-To speed up the detection of bots, the detector caches the metadata configuration resource to an executable cache file. To change that behaviour, you can simply change the `cache_file` to null or change it to a value of your choice. E.g.:
+To speed up the detection of bots, the detector caches the metadata configuration resource to an executable cache file. To change that behaviour, you can simply change the `cache_file` to null (turn of the cache) or change it to a value of your choice. E.g.:
 
 ``` yaml
 vipx_bot_detect:
-    cache_file: ~
+    cache_file: ~ # or a special file name
 ```
 
 ### Automatically authenticate Bots
 
-The bundle also has a listener, which when turned on authenticates visting bots to use this information in your controller. To enable the listener you must change `use_listener` to `true`. (Defaults to `false`).
+The bundle also has a listener, which when turned on authenticates visting bots e.g. to use this information in your controller. To enable the listener you must change `use_listener` to `true`. (Defaults to `false`).
 
 ``` yaml
 vipx_bot_detect:
