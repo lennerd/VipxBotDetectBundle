@@ -1,5 +1,5 @@
 {
-    "hash": "019f3863acec9e2e371a7b61b7579f3c",
+    "hash": "710ee23a472c7829d2aaff0378a8e523",
     "packages": [
         {
             "package": "doctrine/common",
@@ -51,6 +51,18 @@
         },
         {
             "package": "symfony/routing",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.1",
+            "commit-date": "1347274422"
+        },
+        {
+            "package": "symfony/security",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.1",
+            "commit-date": "1347274422"
+        },
+        {
+            "package": "symfony/security-bundle",
             "version": "2.1.x-dev",
             "source-reference": "v2.1.1",
             "commit-date": "1347274422"
