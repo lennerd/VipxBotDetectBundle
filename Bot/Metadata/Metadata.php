@@ -17,7 +17,8 @@ class Metadata implements MetadataInterface
     private $name;
     private $agent;
     private $ip = null;
-    private $type = array();
+    private $type = self::TYPE_BOT;
+    private $meta = array();
     private $agentMatch = self::AGENT_MATCH_REGEXP;
 
     /**
@@ -25,14 +26,37 @@ class Metadata implements MetadataInterface
      * @param string $agent
      * @param null|string $ip
      * @param string $type
+     * @param array $meta
      * @param string $agentMatch
      */
-    public function __construct($name, $agent, $ip = null, $type = self::TYPE_BOT, $agentMatch = self::AGENT_MATCH_REGEXP)
+    public function __construct($name, $agent, $ip = null)
     {
         $this->name = $name;
         $this->agent = $agent;
         $this->ip = $ip;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
         $this->type = $type;
+    }
+
+    /**
+     * @param array $meta
+     */
+    public function setMeta(array $meta)
+    {
+        $this->meta = $meta;
+    }
+
+    /**
+     * @param string $agentMatch
+     */
+    public function setAgentMatch($agentMatch)
+    {
         $this->agentMatch = $agentMatch;
     }
 
@@ -42,6 +66,14 @@ class Metadata implements MetadataInterface
     public function getAgent()
     {
         return $this->agent;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMeta()
+    {
+        return $this->meta;
     }
 
     /**

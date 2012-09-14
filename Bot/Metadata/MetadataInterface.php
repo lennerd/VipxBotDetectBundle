@@ -68,4 +68,11 @@ interface MetadataInterface
      */
     function getType();
 
+    /**
+     * Returns the meta information's of the bot
+     *
+     * @return array
+     */
+    function getMeta();
+
 }

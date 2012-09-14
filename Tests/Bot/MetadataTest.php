@@ -18,14 +18,14 @@ class MetadataTest extends \PHPUnit_Framework_TestCase
 
     public function testMatchExact()
     {
-        $metadata = new Metadata('TestBot', 'test', null, Metadata::TYPE_BOT, Metadata::AGENT_MATCH_EXACT);
+        $metadata = new Metadata('TestBot', 'test', null, Metadata::TYPE_BOT, array(), Metadata::AGENT_MATCH_EXACT);
 
         $this->assertTrue($metadata->match('test', '127.0.0.1'));
     }
 
     public function testMatchRegexp()
     {
-        $metadata = new Metadata('TestBot', 'test', null, Metadata::TYPE_BOT, Metadata::AGENT_MATCH_REGEXP);
+        $metadata = new Metadata('TestBot', 'test', null, Metadata::TYPE_BOT, array(), Metadata::AGENT_MATCH_REGEXP);
 
         $this->assertTrue($metadata->match('test-agent', '127.0.0.1'));
     }

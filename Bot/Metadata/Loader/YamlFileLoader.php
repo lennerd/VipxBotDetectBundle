@@ -82,10 +82,21 @@ class YamlFileLoader extends FileLoader
 
         foreach ($content['bots'] as $name => $bot) {
             $ip = isset($bot['ip']) ? $bot['ip'] : null;
-            $type = isset($bot['type']) ? $bot['type'] : Metadata::TYPE_BOT;
-            $agentMatch = isset($bot['agent_match']) ? $bot['agent_match'] : Metadata::AGENT_MATCH_REGEXP;
+            $metadata = new Metadata($name, $bot['agent'], $ip);
 
-            $collection->addMetadata(new Metadata($name, $bot['agent'], $ip, $type, $agentMatch));
+            if (isset($bot['type'])) {
+                $metadata->setType($bot['type']);
+            }
+
+            if (isset($bot['meta'])) {
+                $metadata->setMeta($bot['meta']);
+            }
+
+            if (isset($bot['agent_match'])) {
+                $metadata->setAgentMatch($bot['agent_match']);
+            }
+
+            $collection->addMetadata($metadata);
         }
     }
 }

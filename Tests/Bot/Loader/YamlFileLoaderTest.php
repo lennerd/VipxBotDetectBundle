@@ -13,7 +13,7 @@ namespace Vipx\BotDetectBundle\Tests\Bot\Loader;
 
 use Vipx\BotDetectBundle\Bot\Metadata\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
-use Vipx\BotDetectBundle\Bot\Metadata\Metadata;
+use Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface;
 
 class YamlFileLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -43,14 +43,14 @@ class YamlFileLoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('Googlebot', $metadata->getAgent());
         $this->assertEquals(null, $metadata->getIp());
-        $this->assertEquals(Metadata::TYPE_BOT, $metadata->getType());
+        $this->assertEquals(MetadataInterface::TYPE_BOT, $metadata->getType());
 
         /** @var $metadata \Vipx\BotDetectBundle\Bot\Metadata\Metadata */
         $metadata = $metadatas['vectra-mods'];
 
         $this->assertEquals('', $metadata->getAgent());
         $this->assertEquals('212.227.101.211', $metadata->getIp());
-        $this->assertEquals(Metadata::TYPE_SPAMBOT, $metadata->getType());
+        $this->assertEquals(MetadataInterface::TYPE_SPAMBOT, $metadata->getType());
     }
 
 }

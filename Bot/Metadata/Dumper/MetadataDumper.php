@@ -17,7 +17,7 @@ abstract class MetadataDumper implements MetadataDumperInterface
     private $metadatas = array();
 
     /**
-     * @param \Vipx\BotDetectBundle\Bot\Metadata\Metadata[] $metadatas
+     * @param \Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface[] $metadatas
      */
     public function __construct(array $metadatas)
     {
