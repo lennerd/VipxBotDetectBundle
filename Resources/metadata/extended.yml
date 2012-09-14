@@ -60,7 +60,7 @@ bots:
     Accoona-AI:
         agent: Accoona-AI-Agent/
         ip: null
-        type: Agent
+        type: agent
     ActiveBookmark:
         agent: ActiveBookmark
         ip: null
@@ -768,7 +768,7 @@ bots:
     Indy-Library:
         agent: 'Indy Library'
         ip: null
-        type: BadBot
+        type: bad_bot
     INFOmine:
         agent: iVia
         ip: null
@@ -820,7 +820,7 @@ bots:
     Java:
         agent: Java/
         ip: null
-        type: BadBot
+        type: bad_bot
     JCheckLinks:
         agent: JCheckLinks
         ip: null
@@ -876,7 +876,7 @@ bots:
     libwww-script:
         agent: libwww-perl
         ip: null
-        type: BadBot
+        type: bad_bot
     Linguee-Multi-Lingual:
         agent: 'Linguee Bot'
         ip: null
@@ -1552,7 +1552,7 @@ bots:
     Vagabondo:
         agent: 'http://webagent.wise-guys.nl/'
         ip: null
-        type: Agent
+        type: agent
     vBSEO:
         agent: vBSEO
         ip: null
@@ -1560,7 +1560,7 @@ bots:
     vectra-mods:
         agent: ' '
         ip: 212.227.101.211
-        type: BadBot
+        type: bad_bot
     Visvo:
         agent: VisBot
         ip: null
