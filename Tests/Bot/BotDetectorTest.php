@@ -41,10 +41,9 @@ class BotDetectorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($detector->detect($request)->getName(), 'Google');
 
         $request = new Request();
-        $request->server->set('HTTP_USER_AGENT', ' ');
         $request->server->set('REMOTE_ADDR', '212.227.101.211');
 
-        $this->assertEquals($detector->detect($request)->getName(), 'vectra-mods');
+        $this->assertEquals($detector->detect($request)->getName(), 'AboutUs');
     }
 
     private function getDetector()

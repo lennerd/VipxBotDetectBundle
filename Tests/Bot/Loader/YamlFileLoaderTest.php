@@ -48,9 +48,9 @@ class YamlFileLoaderTest extends \PHPUnit_Framework_TestCase
         /** @var $metadata \Vipx\BotDetectBundle\Bot\Metadata\Metadata */
         $metadata = $metadatas['vectra-mods'];
 
-        $this->assertEquals(' ', $metadata->getAgent());
+        $this->assertEquals('', $metadata->getAgent());
         $this->assertEquals('212.227.101.211', $metadata->getIp());
-        $this->assertEquals(Metadata::TYPE_BAD_BOT, $metadata->getType());
+        $this->assertEquals(Metadata::TYPE_SPAMBOT, $metadata->getType());
     }
 
 }

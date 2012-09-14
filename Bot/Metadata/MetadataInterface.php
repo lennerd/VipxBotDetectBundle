@@ -20,9 +20,9 @@ interface MetadataInterface
     const TYPE_BOT = 'bot';
     const TYPE_CRAWLER = 'crawler';
     const TYPE_SPIDER = 'spider';
-    const TYPE_BAD_BOT = 'bad_bot';
-    const TYPE_AGENT = 'agent';
+    const TYPE_SPAMBOT = 'spambot';
     const TYPE_RSS = 'rss';
+    const TYPE_VALIDATOR = 'validator';
 
     /**
      * Returns the name of the bot
