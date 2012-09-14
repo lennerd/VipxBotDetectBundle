@@ -75,19 +75,23 @@ class BotDetector implements BotDetectorInterface
         }
 
         if (null === $this->options['cache_dir'] || null === $this->options['metadata_cache_file']) {
-            return $this->metadatas = $this->loader->load($this->resource);
+            /** @var $metadataCollection \Vipx\BotDetectBundle\Bot\Metadata\MetadataCollection */
+            $metadataCollection = $this->loader->load($this->resource);
+
+            return $this->metadatas = $metadataCollection->getMetadatas();
         }
 
         $cache = new ConfigCache($this->options['cache_dir'] . '/' . $this->options['metadata_cache_file'], $this->options['debug']);
 
         if (!$cache->isFresh()) {
-            $metadatas = $this->loader->load($this->resource);
+            /** @var $metadataCollection \Vipx\BotDetectBundle\Bot\Metadata\MetadataCollection */
+            $metadataCollection = $this->loader->load($this->resource);
             $dumperClass = $this->options['metadata_dumper_class'];
 
             /** @var $dumper \Vipx\BotDetectBundle\Bot\Metadata\Dumper\MetadataDumper */
-            $dumper = new $dumperClass($metadatas);
+            $dumper = new $dumperClass($metadataCollection->getMetadatas());
 
-            $cache->write($dumper->dump(), array(new FileResource($this->resource)));
+            $cache->write($dumper->dump(), $metadataCollection->getResources());
         }
 
         return $this->metadatas = require $cache;

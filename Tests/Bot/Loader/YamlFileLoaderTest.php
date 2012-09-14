@@ -33,7 +33,7 @@ class YamlFileLoaderTest extends \PHPUnit_Framework_TestCase
         $loader = new YamlFileLoader($locator);
         $metadataFile = __DIR__ . '/../../../Resources/metadata/extended.yml';
 
-        $metadatas = $loader->load($metadataFile);
+        $metadatas = $loader->load($metadataFile)->getMetadatas();
 
         $this->assertArrayHasKey('Google', $metadatas);
         $this->assertArrayHasKey('vectra-mods', $metadatas);

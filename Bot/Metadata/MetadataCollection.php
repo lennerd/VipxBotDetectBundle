@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Vipx\BotDetectBundle\Bot\Metadata\Loader;
+namespace Vipx\BotDetectBundle\Bot\Metadata;
 
 use Symfony\Component\Config\Resource\ResourceInterface;
 use Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface;

@@ -13,7 +13,9 @@ namespace Vipx\BotDetectBundle\Bot\Metadata\Loader;
 
 use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Resource\FileResource;
 use Vipx\BotDetectBundle\Bot\Metadata\Metadata;
+use Vipx\BotDetectBundle\Bot\Metadata\MetadataCollection;
 
 class YamlFileLoader extends FileLoader
 {
@@ -21,16 +23,21 @@ class YamlFileLoader extends FileLoader
     /**
      * @param mixed $file
      * @param null|string $type
-     * @return Metadata[]
+     * @return MetadataCollection
      */
     public function load($file, $type = null)
     {
         $file = $this->locator->locate($file);
+        $collection = new MetadataCollection();
+
+        $collection->addResource(new FileResource($file));
 
         $content = Yaml::parse($file);
-        //$this->parseImports($content, $file);
 
-        return $this->parseBots($content);
+        $this->parseImports($collection, $content, $file);
+        $this->parseBots($collection, $content);
+
+        return $collection;
     }
 
     /**
@@ -49,7 +56,7 @@ class YamlFileLoader extends FileLoader
      * @param array  $content
      * @param string $file
      */
-    /*private function parseImports($content, $file)
+    private function parseImports(MetadataCollection $collection, $content, $file)
     {
         if (!isset($content['imports'])) {
             return;
@@ -57,9 +64,9 @@ class YamlFileLoader extends FileLoader
 
         foreach ($content['imports'] as $import) {
             $this->setCurrentDir(dirname($file));
-            $this->import($import['resource'], null, isset($import['ignore_errors']) ? (Boolean) $import['ignore_errors'] : false, $file);
+            $collection->addCollection($this->import($import['resource'], null, isset($import['ignore_errors']) ? (Boolean) $import['ignore_errors'] : false, $file));
         }
-    }*/
+    }
 
     /**
      * Parses all bot metadatas
@@ -67,22 +74,18 @@ class YamlFileLoader extends FileLoader
      * @param $content
      * @return array
      */
-    private function parseBots($content)
+    private function parseBots(MetadataCollection $collection, $content)
     {
         if (!isset($content['bots'])) {
             return;
         }
-
-        $metadatas = array();
 
         foreach ($content['bots'] as $name => $bot) {
             $ip = isset($bot['ip']) ? $bot['ip'] : null;
             $type = isset($bot['type']) ? $bot['type'] : Metadata::TYPE_BOT;
             $agentMatch = isset($bot['agent_match']) ? $bot['agent_match'] : Metadata::AGENT_MATCH_REGEXP;
 
-            $metadatas[$name] = new Metadata($name, $bot['agent'], $ip, $type, $agentMatch);
+            $collection->addMetadata(new Metadata($name, $bot['agent'], $ip, $type, $agentMatch));
         }
-
-        return $metadatas;
     }
 }

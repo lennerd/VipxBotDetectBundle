@@ -4,6 +4,9 @@
 # * Updated by Pony99CA
 # * http://www.phpbb.com/community/viewtopic.php?p=12119145#p12119145
 
+imports:
+     - { resource: basic.yml }
+
 bots:
     123spider:
         agent: 123spider-Bot
@@ -45,14 +48,6 @@ bots:
         agent: Abonti
         ip: null
         type: bot
-    About:
-        agent: About/
-        ip: null
-        type: bot
-    AboutUs:
-        agent: AboutUsBot/
-        ip: null
-        type: bot
     Accoona:
         agent: accoona
         ip: null
@@ -63,10 +58,6 @@ bots:
         type: agent
     ActiveBookmark:
         agent: ActiveBookmark
-        ip: null
-        type: bot
-    AdsBot:
-        agent: AdsBot-Google
         ip: null
         type: bot
     AEIWI:
@@ -89,16 +80,8 @@ bots:
         agent: AISearchBot
         ip: null
         type: bot
-    Alexa:
-        agent: ia_archiver
-        ip: null
-        type: bot
     Allesklar:
         agent: Allesklar
-        ip: null
-        type: bot
-    Alta-Vista:
-        agent: Scooter/
         ip: null
         type: bot
     Amazon-Elastic-Cloud:
@@ -493,14 +476,6 @@ bots:
         agent: ExtractorPro
         ip: null
         type: SpamBot
-    Facebook:
-        agent: facebookexternalhit
-        ip: null
-        type: bot
-    Facebook-Scraper:
-        agent: facebookscraper
-        ip: null
-        type: bot
     FairShare:
         agent: fairshare.cc
         ip: null
@@ -633,30 +608,10 @@ bots:
         agent: ichiro
         ip: null
         type: bot
-    Google:
-        agent: Googlebot
-        ip: null
-        type: bot
-    Google-Adsense:
-        agent: Mediapartners-Google
-        ip: null
-        type: bot
-    Google-Desktop:
-        agent: 'Google Desktop'
-        ip: null
-        type: bot
     Google-Feedfetcher:
         agent: Feedfetcher-Google
         ip: null
         type: RSS
-    Google-Search-Appliance:
-        agent: gsa-crawler
-        ip: null
-        type: crawler
-    Google-Sitemap:
-        agent: GSMA/
-        ip: null
-        type: bot
     Google-Wireless-Transcoder:
         agent: 'Google Wireless Transcoder'
         ip: null
@@ -905,10 +860,6 @@ bots:
         agent: MantraAgent
         ip: null
         type: bot
-    Lycos:
-        agent: Lycos_Spider_
-        ip: null
-        type: spider
     Majestic-12:
         agent: MJ12bot/
         ip: null
@@ -943,14 +894,6 @@ bots:
         type: bot
     Microsoft-Academic-Search:
         agent: librabot
-        ip: null
-        type: bot
-    Microsoft-Bing-WinHttp:
-        agent: WinHttp
-        ip: null
-        type: bot
-    Microsoft-Research:
-        agent: MSRBOT
         ip: null
         type: bot
     Mirago:
@@ -997,22 +940,6 @@ bots:
         agent: msiecrawler
         ip: null
         type: crawler
-    MSN:
-        agent: msnbot/
-        ip: null
-        type: bot
-    MSN-Mobile:
-        agent: MSMOBOT
-        ip: null
-        type: bot
-    MSN-NewsBlogs:
-        agent: msnbot-NewsBlogs/
-        ip: null
-        type: bot
-    MSNbot-Media:
-        agent: msnbot-media/
-        ip: null
-        type: bot
     Munax:
         agent: null
         ip: 82.99.30
@@ -1677,24 +1604,8 @@ bots:
         agent: yacybot
         ip: null
         type: bot
-    Yahoo:
-        agent: 'Yahoo! Slurp'
-        ip: null
-        type: bot
     Yahoo-Japan:
         agent: yahoo.co.jp
-        ip: null
-        type: bot
-    Yahoo-MMCrawler:
-        agent: Yahoo-MMCrawler/
-        ip: null
-        type: bot
-    Yahoo-Search-Marketing:
-        agent: crawlx
-        ip: null
-        type: crawler
-    Yahoo-Slurp:
-        agent: 'Yahoo! DE Slurp'
         ip: null
         type: bot
     'Yahoo! Blogs':
@@ -1707,22 +1618,6 @@ bots:
         type: RSS
     Yahoo-Mindset:
         agent: 'Yahoo! Mindset'
-        ip: null
-        type: bot
-    Yahoo-SpiderMan:
-        agent: SpiderMan
-        ip: null
-        type: bot
-    Yahoo-Test:
-        agent: Yahoo-Test
-        ip: null
-        type: bot
-    Yahoo-VerticalCrawler:
-        agent: Yahoo-VerticalCrawler
-        ip: null
-        type: bot
-    YahooSeeker:
-        agent: YahooSeeker/
         ip: null
         type: bot
     Yandex:

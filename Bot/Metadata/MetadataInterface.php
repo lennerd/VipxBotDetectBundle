@@ -22,6 +22,7 @@ interface MetadataInterface
     const TYPE_SPIDER = 'spider';
     const TYPE_BAD_BOT = 'bad_bot';
     const TYPE_AGENT = 'agent';
+    const TYPE_RSS = 'rss';
 
     /**
      * Returns the name of the bot
