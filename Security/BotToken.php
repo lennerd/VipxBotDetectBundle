@@ -21,7 +21,7 @@ class BotToken extends AnonymousToken
 
     /**
      * @param string $key
-     * @param \Vipx\BotDetectBundle\Bot\Metadata\Metadata $metadata
+     * @param \Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface $metadata
      * @param array $roles
      */
     public function __construct($key, MetadataInterface $metadata, array $roles = array())
@@ -33,6 +33,14 @@ class BotToken extends AnonymousToken
         $this->metadata = $metadata;
 
         parent::__construct($key, ucfirst($metadata->getType()) . ' (' . $metadata->getName() . ')' , $roles);
+    }
+
+    /**
+     * @return \Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 
     /**

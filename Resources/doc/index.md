@@ -45,7 +45,7 @@ public function registerBundles()
 
 ## Usage
 
-Using the bundle is easy as simple using the detector service `vipx_bot_detect.detector`:
+Using the bundle is easy as using the detector service `vipx_bot_detect.detector`:
 
 ``` php
 <?php
@@ -79,13 +79,13 @@ class BotController extends Controller
 
 The bundle comes shipped with two different metadata files. The `basic.yml` file holds the main known bots. The `extended.yml` also has informations about some spam bots, spiders and crawlers of smaller web services.
 
-*Notice:* Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.*
+_Notice:_ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.*
 
 The bundle is preconfigured to use the `basic.yml` file if needed. To change it, you can simply change the configuration:
 
 ``` yaml
 vipx_bot_detect:
-    resource: @VipxBotDetectBundle/Resources/metadata/extended.yml
+    resource: "@VipxBotDetectBundle/Resources/metadata/extended.yml"
 ```
 
 ### Cache File
@@ -115,6 +115,7 @@ namespace Acme\BotBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Vipx\BotDetectBundle\Security\BotToken;
 
 class BotController extends Controller
 {
@@ -124,6 +125,16 @@ class BotController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_BOT')) {
             // The bot is not allowed to access this controller
             throw new AccessDeniedException();
+        }
+
+        // or
+
+        $token = $this->get('security.context')->getToken();
+
+        if ($token instanceof BotToken) {
+            $botMetadata = $token->getMetadata();
+
+            // Google? No way. Keep out ...
         }
 
         // ...
