@@ -1,11 +1,29 @@
 {
-    "hash": "e3b2fc0d9e45038c78390dbd4bfa6962",
+    "hash": "019f3863acec9e2e371a7b61b7579f3c",
     "packages": [
         {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
             "source-reference": "bcc89eb63e7dad22102c4e0516fe40159461f40a",
             "commit-date": "1347603718"
+        },
+        {
+            "package": "symfony/config",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.0-RC2",
+            "commit-date": "1345643321"
+        },
+        {
+            "package": "symfony/dependency-injection",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.1",
+            "commit-date": "1347274422"
+        },
+        {
+            "package": "symfony/event-dispatcher",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.1",
+            "commit-date": "1347274422"
         },
         {
             "package": "symfony/filesystem",
@@ -18,6 +36,18 @@
             "version": "2.1.x-dev",
             "source-reference": "v2.1.1",
             "commit-date": "1347274422"
+        },
+        {
+            "package": "symfony/http-foundation",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.1",
+            "commit-date": "1346761482"
+        },
+        {
+            "package": "symfony/http-kernel",
+            "version": "2.1.x-dev",
+            "source-reference": "584499e64026f41c4be938ed35d8f0a9a9eebd38",
+            "commit-date": "1347354770"
         },
         {
             "package": "symfony/routing",
@@ -38,7 +68,14 @@
             "commit-date": "1347274422"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+        {
+            "package": "symfony/yaml",
+            "version": "2.1.x-dev",
+            "source-reference": "v2.1.0-RC2",
+            "commit-date": "1345643321"
+        }
+    ],
     "aliases": [
 
     ],
