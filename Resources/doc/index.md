@@ -79,7 +79,7 @@ class BotController extends Controller
 
 The bundle comes shipped with different metadata files sorting metadata by type. The `basic.yml` file holds the main known bots. The `extended.yml` also has informations about some bots of smaller web services. They are both importing metadata files for each type of bot (e.g. `extended_validator.yml` or `basic_validator.yml`).
 
-__Notice:__ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.
+__Note:__ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.
 
 The bundle is preconfigured to use the `Resources/metadata/basic_bot.yml` file. If you want for example only the basic validator bots, you can simply change the configuration:
 
@@ -99,7 +99,7 @@ vipx_bot_detect:
 
 ### Automatically authenticate Bots
 
-The bundle also has a listener, which when turned on authenticates visting bots e.g. to use this information in your controller. To enable the listener you must change `use_listener` to `true`. (Defaults to `false`).
+The bundle also has a listener, which when turned on authenticates visting bots e.g. to use this information in your controller. To enable the listener you must change `use_listener` to `true` (defaults to `false`).
 
 ``` yaml
 vipx_bot_detect:
