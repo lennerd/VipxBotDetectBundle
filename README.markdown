@@ -10,7 +10,7 @@ This bundle adds a detector service to your Syfmony 2 project for detecting diff
 
 ## ToDo's
 
-- Add a `robots.txt` generator
+- Extract the bot detector as standalone project imported by this bundle
 - Add additional meta data loaders (xml, php)
 
 ## Credits
