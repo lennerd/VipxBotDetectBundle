@@ -36,7 +36,7 @@
             </argument>
         </service>
 
-        <service id="vipx_bot_detect.security.authentication_listener" class="%vipx_bot_detect.security.authentication_listener.class%" public="false">
+        <service id="vipx_bot_detect.security.authentication_listener" class="%vipx_bot_detect.security.authentication_listener.class%">
             <argument type="service" id="security.context" />
             <argument type="service" id="vipx_bot_detect.detector" />
         </service>
