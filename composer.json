@@ -14,11 +14,11 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": "2.*",
-        "symfony/security-bundle": "2.*"
+        "symfony/framework-bundle": "~2.1",
+        "symfony/security-bundle": "~2.1"
     },
     "require-dev": {
-        "symfony/yaml": "2.*"
+        "symfony/yaml": "~2.1"
     },
     "autoload": {
         "psr-0": { "Vipx\\BotDetectBundle": "" }
