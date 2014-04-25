@@ -30,7 +30,10 @@ class VipxBotDetectExtension extends Extension
         $loader->load('services.xml');
 
         if ($config['use_listener']) {
-            $container->getDefinition('vipx_bot_detect.security.authentication_listener')->addTag('kernel.event_listener', array(
+            $listenerDefinition = $container->getDefinition('vipx_bot_detect.security.authentication_listener');
+
+            $listenerDefinition->setPublic(true);
+            $listenerDefinition->addTag('kernel.event_listener', array(
                 'event' => 'kernel.request',
                 'method' => 'onKernelRequest',
             ));

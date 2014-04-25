@@ -30,6 +30,7 @@ class VipxBotDetectExtensionTest extends \PHPUnit_Framework_TestCase
         $definition = $containerBuilder->getDefinition('vipx_bot_detect.security.authentication_listener');
 
         $this->assertTrue($definition->hasTag('kernel.event_listener'));
+        $this->assertTrue($definition->isPublic());
 
         $eventTag = $definition->getTag('kernel.event_listener');
 
