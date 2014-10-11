@@ -18,7 +18,7 @@ class BotTokenTest extends \PHPUnit_Framework_TestCase
 
     public function testBotRole()
     {
-        $metadata = $this->getMock('Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface');
+        $metadata = $this->getMock('Vipx\BotDetect\Metadata\MetadataInterface');
         $token = new BotToken('test', $metadata);
         $roles = $token->getRoles();
 

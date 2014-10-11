@@ -11,16 +11,16 @@
 
 namespace Vipx\BotDetectBundle\Tests\Bot;
 
-use Vipx\BotDetectBundle\Bot\BotDetector;
+use Vipx\BotDetectBundle\BotDetector;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Config\FileLocator;
-use Vipx\BotDetectBundle\Bot\Metadata\Loader\YamlFileLoader;
+use Vipx\BotDetect\Metadata\Loader\YamlFileLoader;
 
 class BotDetectorTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testSettingOptions()
     {
@@ -38,12 +38,12 @@ class BotDetectorTest extends \PHPUnit_Framework_TestCase
         $request = new Request();
         $request->server->set('HTTP_USER_AGENT', 'Googlebot');
 
-        $this->assertEquals($detector->detect($request)->getName(), 'Google');
+        $this->assertEquals($detector->detectFromRequest($request)->getName(), 'Google');
 
         $request = new Request();
         $request->server->set('REMOTE_ADDR', '212.227.101.211');
 
-        $this->assertEquals($detector->detect($request)->getName(), 'AboutUs');
+        $this->assertEquals($detector->detectFromRequest($request)->getName(), 'AboutUs');
     }
 
     private function getDetector()

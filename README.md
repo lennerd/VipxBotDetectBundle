@@ -10,8 +10,7 @@ This bundle adds a detector service to your Syfmony 2 project for detecting diff
 
 ## ToDo's
 
-- Extract the bot detector as standalone project imported by this bundle ([`vipx-bot-detect`](https://github.com/lennerd/vipx-bot-detect))
-- Add additional meta data loaders (xml, php)
+- Find a way to load resources from the [`vipx-bot-detect`](https://github.com/lennerd/vipx-bot-detect) dependency.
 
 ## Credits
 

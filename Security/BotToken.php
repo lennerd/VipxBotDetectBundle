@@ -12,7 +12,7 @@
 namespace Vipx\BotDetectBundle\Security;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface;
+use Vipx\BotDetect\Metadata\MetadataInterface;
 
 class BotToken extends AnonymousToken
 {
@@ -21,7 +21,7 @@ class BotToken extends AnonymousToken
 
     /**
      * @param string $key
-     * @param \Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface $metadata
+     * @param MetadataInterface $metadata
      * @param array $roles
      */
     public function __construct($key, MetadataInterface $metadata, array $roles = array())
@@ -36,7 +36,7 @@ class BotToken extends AnonymousToken
     }
 
     /**
-     * @return \Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface
+     * @return MetadataInterface
      */
     public function getMetadata()
     {
@@ -46,8 +46,8 @@ class BotToken extends AnonymousToken
     /**
      * A shortcut for creating a bot token from an anonymous token
      *
-     * @param \Vipx\BotDetectBundle\Bot\Metadata\Metadata $metadata
-     * @param \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken $token
+     * @param MetadataInterface $metadata
+     * @param AnonymousToken $token
      * @return BotToken
      */
     public static function fromAnonymousToken(MetadataInterface $metadata, AnonymousToken $token)

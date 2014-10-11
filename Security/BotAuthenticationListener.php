@@ -12,10 +12,10 @@
 namespace Vipx\BotDetectBundle\Security;
 
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Vipx\BotDetectBundle\Bot\BotDetectorInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
+use Vipx\BotDetect\BotDetectorInterface;
 
 /**
  * A kernel.request listener, which automatically authenticate visiting bots.
@@ -27,8 +27,8 @@ class BotAuthenticationListener
     private $detector;
 
     /**
-     * @param \Symfony\Component\Security\Core\SecurityContextInterface $context
-     * @param \Vipx\BotDetectBundle\Bot\BotDetector $detector
+     * @param SecurityContextInterface $context
+     * @param BotDetectorInterface $detector
      */
     public function __construct(SecurityContextInterface $context, BotDetectorInterface $detector)
     {
@@ -39,7 +39,7 @@ class BotAuthenticationListener
     /**
      * Listens to the kernel.request events and sets a bot token if the visitor is a spider or crawler
      *
-     * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
+     * @param GetResponseEvent $event
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
@@ -49,8 +49,10 @@ class BotAuthenticationListener
 
         $token = $this->context->getToken();
         $request = $event->getRequest();
+        $agent = $request->server->get('HTTP_USER_AGENT');
+        $ip = $request->getClientIp();
 
-        if ($token instanceof AnonymousToken && null !== $metaData = $this->detector->detect($request)) {
+        if ($token instanceof AnonymousToken && null !== $metaData = $this->detector->detect($agent, $ip)) {
             $this->context->setToken(BotToken::fromAnonymousToken($metaData, $token));
         }
     }

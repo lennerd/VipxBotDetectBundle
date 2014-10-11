@@ -7,10 +7,10 @@
     <parameters>
         <parameter key="vipx_bot_detect.metadata.resolver.class">Symfony\Component\Config\Loader\LoaderResolver</parameter>
         <parameter key="vipx_bot_detect.metadata.loader.class">Symfony\Component\Config\Loader\DelegatingLoader</parameter>
-        <parameter key="vipx_bot_detect.metadata.loader.yml.class">Vipx\BotDetectBundle\Bot\Metadata\Loader\YamlFileLoader</parameter>
-        <parameter key="vipx_bot_detect.metadata.dumper.class">Vipx\BotDetectBundle\Bot\Metadata\Dumper\PhpMetadataDumper</parameter>
-        <parameter key="vipx_bot_detect.detector.class">Vipx\BotDetectBundle\Bot\BotDetector</parameter>
-        <parameter key="vipx_bot_detect.security.authentication_listener.class">Vipx\BotDetectBundle\Security\BotAuthenticationListener</parameter>
+        <parameter key="vipx_bot_detect.metadata.loader.yml.class">Vipx\BotDetect\Bot\Metadata\Loader\YamlFileLoader</parameter>
+        <parameter key="vipx_bot_detect.metadata.dumper.class">Vipx\BotDetect\Bot\Metadata\Dumper\PhpMetadataDumper</parameter>
+        <parameter key="vipx_bot_detect.detector.class">Vipx\BotDetectBundle\BotDetector</parameter>
+        <parameter key="vipx_bot_detect.security.authentication_listener.class">Vipx\BotDetect\Security\BotAuthenticationListener</parameter>
     </parameters>
 
     <services>

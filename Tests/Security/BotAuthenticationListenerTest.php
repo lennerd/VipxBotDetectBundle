@@ -33,11 +33,11 @@ class BotAuthenticationListenerTest extends \PHPUnit_Framework_TestCase
             ->method('setToken')
             ->with($this->isInstanceOf('Vipx\BotDetectBundle\Security\BotToken'));
 
-        $botDetector = $this->getMock('Vipx\BotDetectBundle\Bot\BotDetectorInterface');
-        $metaData = $this->getMock('Vipx\BotDetectBundle\Bot\Metadata\MetadataInterface');
+        $botDetector = $this->getMock('Vipx\BotDetect\BotDetectorInterface');
+        $metaData = $this->getMock('Vipx\BotDetect\Metadata\MetadataInterface');
 
         $botDetector->expects($this->any())
-            ->method('detect')
+            ->method('detectFromRequest')
             ->will($this->returnValue($metaData));
 
         $listener = new BotAuthenticationListener($securityContext, $botDetector);
