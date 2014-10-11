@@ -75,22 +75,29 @@ class BotController extends Controller
 
 ## Configuration
 
-### Resource File
+### Metadata File
 
-The bundle comes shipped with different metadata files sorting metadata by type. The `basic.yml` file holds the main known bots. The `extended.yml` also has informations about some bots of smaller web services. They are both importing metadata files for each type of bot (e.g. `extended_validator.yml` or `basic_validator.yml`).
+The bundle comes shipped with different metadata files sorting metadata by type. The `basic.yml` file holds the main known bots. The `extended.yml` also has information about some bots of smaller web services. They are both importing metadata files for each type of bot (e.g. `extended_validator.yml` or `basic_validator.yml`).
 
-__Note:__ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs much longer to search threw the given informations.
+__Note:__ Keep in mind, that the `extended.yml` metadata file is much bigger than the `basic.yml` file. Therefor the detector needs significantly longer to search threw the given information.
 
-The bundle is preconfigured to use the `Resources/metadata/basic_bot.yml` file. If you want for example only the basic validator bots, you can simply change the configuration:
+The bundle is pre configured to use the `basic_bot.yml` file. If you want for example only the basic validator bots, you can simply change the configuration:
 
 ``` yaml
 vipx_bot_detect:
-    resource: "@VipxBotDetectBundle/Resources/metadata/basic_validator.yml"
+    metadata_file: "basic_validator.yml"
+```
+
+If you store your meta data files in another place, you can for example also use a bundle resource path:
+
+``` yaml
+vipx_bot_detect:
+    metadata_file: "@MyAcmeBundle\Resources\metadata\custom_bots.yml"
 ```
 
 ### Cache File
 
-To speed up the detection of bots, the detector caches the metadata configuration resource to an executable cache file. To change that behaviour, you can simply change the `cache_file` to null (turn of the cache) or change it to a value of your choice. E.g.:
+To speed up the detection of bots, the detector caches the metadata configuration files to an executable cache file. To change that behaviour, you can simply change the `cache_file` to null (turn of the cache) or change it to a value of your choice. E.g.:
 
 ``` yaml
 vipx_bot_detect:

@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Definition;
 class VipxBotDetectExtensionTest extends \PHPUnit_Framework_TestCase
 {
 
-    const RESOURCE = 'test_resource';
+    const METADATA_FILE = 'test_metadata_file';
     const CACHE_FILE = 'test_cache_file';
 
     public function testListenerExtension()
@@ -47,10 +47,10 @@ class VipxBotDetectExtensionTest extends \PHPUnit_Framework_TestCase
 
         $extension->load($this->getConfig(), $containerBuilder);
 
-        $this->assertTrue($containerBuilder->hasParameter('vipx_bot_detect.metadata.resource'));
+        $this->assertTrue($containerBuilder->hasParameter('vipx_bot_detect.metadata.metadata_file'));
         $this->assertTrue($containerBuilder->hasParameter('vipx_bot_detect.metadata.cache_file'));
 
-        $this->assertEquals(self::RESOURCE, $containerBuilder->getParameter('vipx_bot_detect.metadata.resource'));
+        $this->assertEquals(self::METADATA_FILE, $containerBuilder->getParameter('vipx_bot_detect.metadata.metadata_file'));
         $this->assertEquals(self::CACHE_FILE, $containerBuilder->getParameter('vipx_bot_detect.metadata.cache_file'));
     }
 
@@ -59,7 +59,7 @@ class VipxBotDetectExtensionTest extends \PHPUnit_Framework_TestCase
         return array(
             'vipx_bot_detect' => array(
                 'use_listener' => true,
-                'resource' => self::RESOURCE,
+                'metadata_file' => self::METADATA_FILE,
                 'cache_file' => self::CACHE_FILE,
             ),
         );

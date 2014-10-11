@@ -11,6 +11,7 @@
         <parameter key="vipx_bot_detect.metadata.dumper.class">Vipx\BotDetect\Bot\Metadata\Dumper\PhpMetadataDumper</parameter>
         <parameter key="vipx_bot_detect.detector.class">Vipx\BotDetectBundle\BotDetector</parameter>
         <parameter key="vipx_bot_detect.security.authentication_listener.class">Vipx\BotDetect\Security\BotAuthenticationListener</parameter>
+        <parameter key="vipx_bot_detect.metadata_file_locator.class">Vipx\BotDetectBundle\Config\MetadataFileLocator</parameter>
     </parameters>
 
     <services>
@@ -18,7 +19,7 @@
 
         <service id="vipx_bot_detect.metadata.loader.yml" class="%vipx_bot_detect.metadata.loader.yml.class%" public="false">
             <tag name="vipx_bot_detect.metadata.loader" />
-            <argument type="service" id="file_locator" />
+            <argument type="service" id="vipx_bot_detect.metadata_file_locator" />
         </service>
 
         <service id="vipx_bot_detect.metadata.loader" class="%vipx_bot_detect.metadata.loader.class%">
@@ -27,7 +28,7 @@
 
         <service id="vipx_bot_detect.detector" class="%vipx_bot_detect.detector.class%">
             <argument type="service" id="vipx_bot_detect.metadata.loader" />
-            <argument>%vipx_bot_detect.metadata.resource%</argument>
+            <argument>%vipx_bot_detect.metadata.metadata_file%</argument>
             <argument type="collection">
                 <argument key="cache_dir">%kernel.cache_dir%</argument>
                 <argument key="debug">%kernel.debug%</argument>
@@ -40,5 +41,7 @@
             <argument type="service" id="security.context" />
             <argument type="service" id="vipx_bot_detect.detector" />
         </service>
+
+        <service id="vipx_bot_detect.metadata_file_locator" class="%vipx_bot_detect.metadata_file_locator.class%" public="false" parent="file_locator" />
     </services>
 </container>

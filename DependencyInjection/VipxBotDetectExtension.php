@@ -39,7 +39,7 @@ class VipxBotDetectExtension extends Extension
             ));
         }
 
-        $container->setParameter('vipx_bot_detect.metadata.resource', $config['resource']);
+        $container->setParameter('vipx_bot_detect.metadata.metadata_file', $config['metadata_file']);
         $container->setParameter('vipx_bot_detect.metadata.cache_file', $config['cache_file']);
     }
 }

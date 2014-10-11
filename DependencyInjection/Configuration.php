@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('vipx_bot_detect');
 
         $rootNode->children()
-            ->scalarNode('resource')->defaultValue('@VipxBotDetectBundle/Resources/metadata/basic_bot.yml')->end()
+            ->scalarNode('metadata_file')->defaultValue('basic_bot.yml')->end()
             ->scalarNode('cache_file')->defaultValue('project_vipx_bot_detect_metadata.php')->end()
             ->booleanNode('use_listener')->defaultValue(false)->end()
         ->end();
