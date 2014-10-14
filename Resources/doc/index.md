@@ -61,7 +61,7 @@ class BotController extends Controller
     public function indexAction()
     {
         $detector = $this->get('vipx_bot_detect.detector');
-        $botMetadata = $detector->detect($this->getRequest());
+        $botMetadata = $detector->detectFromRequest($this->getRequest());
 
         if (null === $botMetadata) {
             return new Response('No bot is visiting.');
