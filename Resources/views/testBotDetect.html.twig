@@ -1,0 +1,27 @@
+<h1>Bot detector test tool</h1>
+
+<h2>Tested user agent: "{{ user_agent }}"</h2>
+
+{% if bot is not null %}
+    <p>This user agent <b>is</b> identified by the VipxBotDetect library:</p>
+    <ul>
+        <li>Name: <b>{{ bot.name }}</b></li>
+        <li>Type: <b>{{ bot.type }}</b></li>
+        {% if bot.ip is not empty %}<li>IP: <b>{{ bot.ip }}</b></li>{% endif %}
+        {% if bot.meta is not empty %}
+        <li>Metas:
+            <ul>
+                {% for type, value in bot.meta %}
+                    <li>{{ type }}: <b><a href="{{ value }}">{{ value }}</a></b></li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+    </ul>
+{% else %}
+    <p>This user agent <b>is NOT</b> identified as a bot/crawler/spider by the VipxBotDetect library.</p>
+{% endif  %}
+
+<p>
+    <a href="https://github.com/lennerd/vipx-bot-detect/search?utf8=%E2%9C%93&q={{ user_agent }}">&raquo; Search this user agent in the Github's library repository.</a>
+</p>
