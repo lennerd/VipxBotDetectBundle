@@ -11,7 +11,7 @@
 
 namespace Vipx\BotDetectBundle\Security;
 
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
@@ -23,16 +23,16 @@ use Vipx\BotDetect\BotDetectorInterface;
 class BotAuthenticationListener
 {
 
-    private $context;
+    private $tokenStorage;
     private $detector;
 
     /**
-     * @param SecurityContextInterface $context
+     * @param TokenStorageInterface $tokenStorage
      * @param BotDetectorInterface $detector
      */
-    public function __construct(SecurityContextInterface $context, BotDetectorInterface $detector)
+    public function __construct(TokenStorageInterface $tokenStorage, BotDetectorInterface $detector)
     {
-        $this->context = $context;
+        $this->tokenStorage = $tokenStorage;
         $this->detector = $detector;
     }
 
@@ -47,13 +47,13 @@ class BotAuthenticationListener
             return;
         }
 
-        $token = $this->context->getToken();
+        $token = $this->tokenStorage->getToken();
         $request = $event->getRequest();
         $agent = $request->server->get('HTTP_USER_AGENT');
         $ip = $request->getClientIp();
 
         if ($token instanceof AnonymousToken && null !== $metaData = $this->detector->detect($agent, $ip)) {
-            $this->context->setToken(BotToken::fromAnonymousToken($metaData, $token));
+            $this->tokenStorage->setToken(BotToken::fromAnonymousToken($metaData, $token));
         }
     }
 
