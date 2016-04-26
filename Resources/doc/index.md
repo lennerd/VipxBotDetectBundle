@@ -113,7 +113,7 @@ vipx_bot_detect:
     use_listener: true
 ```
 
-Now the `security.context` service holds a special bot token with information about the visiting bot. This token also has the `ROLE_BOT` role now, which you can simply use in your controller.
+Now the `security.authorization_checker` service holds a special bot token with information about the visiting bot. This token also has the `ROLE_BOT` role now, which you can simply use in your controller.
 
 ``` php
 <?php
@@ -129,14 +129,14 @@ class BotController extends Controller
 
     public function indexAction()
     {
-        if ($this->get('security.context')->isGranted('ROLE_BOT')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_BOT')) {
             // The bot is not allowed to access this controller
             throw new AccessDeniedException();
         }
 
         // or
 
-        $token = $this->get('security.context')->getToken();
+        $token = $this->get('security.token_storage')->getToken();
 
         if ($token instanceof BotToken) {
             $botMetadata = $token->getMetadata();

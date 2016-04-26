@@ -52,7 +52,7 @@ class BotToken extends AnonymousToken
      */
     public static function fromAnonymousToken(MetadataInterface $metadata, AnonymousToken $token)
     {
-        return new self($token->getKey(), $metadata, $token->getRoles());
+        return new self($token->getSecret(), $metadata, $token->getRoles());
     }
 
 }

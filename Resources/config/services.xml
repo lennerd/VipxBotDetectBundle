@@ -10,7 +10,7 @@
         <parameter key="vipx_bot_detect.metadata.loader.yml.class">Vipx\BotDetect\Metadata\Loader\YamlFileLoader</parameter>
         <parameter key="vipx_bot_detect.metadata.dumper.class">Vipx\BotDetect\Metadata\Dumper\PhpMetadataDumper</parameter>
         <parameter key="vipx_bot_detect.detector.class">Vipx\BotDetectBundle\BotDetector</parameter>
-        <parameter key="vipx_bot_detect.security.authentication_listener.class">Vipx\BotDetect\Security\BotAuthenticationListener</parameter>
+        <parameter key="vipx_bot_detect.security.authentication_listener.class">Vipx\BotDetectBundle\Security\BotAuthenticationListener</parameter>
         <parameter key="vipx_bot_detect.metadata_file_locator.class">Vipx\BotDetectBundle\Config\MetadataFileLocator</parameter>
     </parameters>
 

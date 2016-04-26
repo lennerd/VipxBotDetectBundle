@@ -35,4 +35,21 @@ class BotTokenTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testCanCreateBotTokenFromAnonymousToken()
+    {
+        $metadata = $this->getMock('Vipx\BotDetect\Metadata\MetadataInterface');
+
+        $anonymousToken = $this->getMockBuilder('Symfony\Component\Security\Core\Authentication\Token\AnonymousToken')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $anonymousToken->method('getSecret')->willReturn('theSecretKey');
+        $anonymousToken->method('getRoles')->willReturn([]);
+
+        $botToken = BotToken::fromAnonymousToken($metadata, $anonymousToken);
+
+        $this->assertInstanceOf(BotToken::class, $botToken);
+        $this->assertSame($botToken->getSecret(), $anonymousToken->getSecret());
+    }
+
 }
