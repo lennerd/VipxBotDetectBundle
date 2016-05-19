@@ -61,7 +61,7 @@ EOT
 
             $ip = $metaData->getIp();
             if (!empty($ip)) {
-                $rows[] = ['IP', $metaData->getIp()];
+                $rows[] = ['IP', $ip];
             }
 
             $meta = $metaData->getMeta();
