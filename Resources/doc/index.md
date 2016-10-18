@@ -147,3 +147,30 @@ class BotController extends Controller
 
 }
 ```
+
+### Test user agents
+
+The bundle provides a console command to test user agents, you can run it by calling:
+
+```
+php app/console bot-detect:test-user-agent "AddThis"
+```
+
+Where the first argument "AddThis" is the string to test. If the user agent if found it will display its related metadata:
+
+    --------------------------
+    -- Vipx/BotDetectBundle --
+    --------------------------
+     > Testing user agent "AddThis" ...
+     > This agent was found !
+    +---------+------------------------------+
+    | Info    | Value                        |
+    +---------+------------------------------+
+    | Name    | AddThis                      |
+    | Type    | bot                          |
+    +---------+------------------------------+
+    | Metadata                               |
+    +---------+------------------------------+
+    | email   | tech.support@clearspring.com |
+    | website | http://www.addthis.com/      |
+    +---------+------------------------------+
