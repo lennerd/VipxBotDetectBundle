@@ -152,8 +152,8 @@ class BotController extends Controller
 
 The bundle provides a console command to test user agents, you can run it by calling:
 
-```
-php app/console bot-detect:test-user-agent "AddThis"
+``` bash
+$ php app/console bot-detect:test-user-agent "AddThis"
 ```
 
 Where the first argument "AddThis" is the string to test. If the user agent if found it will display its related metadata:
