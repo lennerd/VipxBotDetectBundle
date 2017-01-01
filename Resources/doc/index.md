@@ -21,7 +21,7 @@ First you need to add VipxBotDetectBundle to your `composer.json` file:
 Now tell composer to download the bundle by running the command:
 
 ``` bash
-$ php composer.phar update vipx/bot-detect-bundle
+$ php composer.phar require vipx/bot-detect-bundle
 ```
 
 Composer will install the bundle to `vendor/vipx/bot-detect-bundle`.
