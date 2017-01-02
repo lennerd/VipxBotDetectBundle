@@ -21,7 +21,7 @@ First you need to add VipxBotDetectBundle to your `composer.json` file:
 Now tell composer to download the bundle by running the command:
 
 ``` bash
-$ php composer.phar update vipx/bot-detect-bundle
+$ php composer.phar require vipx/bot-detect-bundle
 ```
 
 Composer will install the bundle to `vendor/vipx/bot-detect-bundle`.
@@ -113,7 +113,7 @@ vipx_bot_detect:
     use_listener: true
 ```
 
-Now the `security.context` service holds a special bot token with information about the visiting bot. This token also has the `ROLE_BOT` role now, which you can simply use in your controller.
+Now the `security.authorization_checker` service holds a special bot token with information about the visiting bot. This token also has the `ROLE_BOT` role now, which you can simply use in your controller.
 
 ``` php
 <?php
@@ -129,14 +129,14 @@ class BotController extends Controller
 
     public function indexAction()
     {
-        if ($this->get('security.context')->isGranted('ROLE_BOT')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_BOT')) {
             // The bot is not allowed to access this controller
             throw new AccessDeniedException();
         }
 
         // or
 
-        $token = $this->get('security.context')->getToken();
+        $token = $this->get('security.token_storage')->getToken();
 
         if ($token instanceof BotToken) {
             $botMetadata = $token->getMetadata();
@@ -147,3 +147,30 @@ class BotController extends Controller
 
 }
 ```
+
+### Test user agents
+
+The bundle provides a console command to test user agents, you can run it by calling:
+
+``` bash
+$ php app/console bot-detect:test-user-agent "AddThis"
+```
+
+Where the first argument "AddThis" is the string to test. If the user agent if found it will display its related metadata:
+
+    --------------------------
+    -- Vipx/BotDetectBundle --
+    --------------------------
+     > Testing user agent "AddThis" ...
+     > This agent was found !
+    +---------+------------------------------+
+    | Info    | Value                        |
+    +---------+------------------------------+
+    | Name    | AddThis                      |
+    | Type    | bot                          |
+    +---------+------------------------------+
+    | Metadata                               |
+    +---------+------------------------------+
+    | email   | tech.support@clearspring.com |
+    | website | http://www.addthis.com/      |
+    +---------+------------------------------+

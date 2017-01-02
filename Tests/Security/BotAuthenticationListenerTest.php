@@ -22,14 +22,16 @@ class BotAuthenticationListenerTest extends \PHPUnit_Framework_TestCase
 
     public function testSettingToken()
     {
-        $securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
+        $tokenStorage = $this->getMock(
+            'Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface'
+        );
         $anonymousToken = new AnonymousToken(null, 'anon.');
 
-        $securityContext->expects($this->any())
+        $tokenStorage->expects($this->any())
             ->method('getToken')
             ->will($this->returnValue($anonymousToken));
 
-        $securityContext->expects($this->any())
+        $tokenStorage->expects($this->any())
             ->method('setToken')
             ->with($this->isInstanceOf('Vipx\BotDetectBundle\Security\BotToken'));
 
@@ -40,7 +42,7 @@ class BotAuthenticationListenerTest extends \PHPUnit_Framework_TestCase
             ->method('detectFromRequest')
             ->will($this->returnValue($metaData));
 
-        $listener = new BotAuthenticationListener($securityContext, $botDetector);
+        $listener = new BotAuthenticationListener($tokenStorage, $botDetector);
 
         $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $event = new GetResponseEvent($kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
