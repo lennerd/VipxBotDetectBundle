@@ -1,0 +1,4 @@
+bot_detect_bundle:
+    resource: "@VipxBotDetectBundle/Controller/"
+    type: annotation
+    prefix: /
