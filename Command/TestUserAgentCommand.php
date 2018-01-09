@@ -51,7 +51,6 @@ EOT
         $output->writeln($formatter->formatBlock('-- Vipx/BotDetectBundle --', 'info'));
         $output->writeln($formatter->formatBlock('--------------------------', 'info'));
         $output->writeln(sprintf(' > Testing user agent "%s" ...', $userAgent));
-
         $metaData = $this->getContainer()->get('vipx_bot_detect.detector')->detect($userAgent, null);
 
         if ($metaData instanceof Metadata) {
@@ -83,7 +82,7 @@ EOT
             }
             $table->render();
         } else {
-            $output->writeln(sprintf(' > This agent is unknown, if you think it should be added, send a PR to lennerd/vipx-bot-detect on Github.', $userAgent));
+            $output->writeln(' > This agent is unknown, if you think it should be added, send a PR to lennerd/vipx-bot-detect on Github.');
         }
 
         $output->writeln('');
