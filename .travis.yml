@@ -5,16 +5,18 @@ language: php
 
 matrix:
     include:
-        # - php: 5.6
-        #   env:
-        #       - SYMFONY_VERSION=^2.8
+        - php: 5.6
+          env:
+              - SYMFONY_VERSION=^2.8
+              - PHPUNIT_VERSION=^5.7
         - php: 5.6
           env:
               - SYMFONY_VERSION=^3.4
               - PHPUNIT_VERSION=^5.7
-        # - php: 7.1
-        #   env:
-        #       - SYMFONY_VERSION=^2.8
+        - php: 7.1
+          env:
+              - SYMFONY_VERSION=^2.8
+              - PHPUNIT_VERSION=^6.4
         - php: 7.1
           env:
               - SYMFONY_VERSION=^3.4
@@ -22,9 +24,10 @@ matrix:
         # - php: 7.1
         #   env:
         #       - SYMFONY_VERSION=^4.0
-        # - php: 7.2
-        #   env:
-        #       - SYMFONY_VERSION=^2.8
+        - php: 7.2
+          env:
+              - SYMFONY_VERSION=^2.8
+              - PHPUNIT_VERSION=^6.4
         - php: 7.2
           env:
               - SYMFONY_VERSION=^3.4
