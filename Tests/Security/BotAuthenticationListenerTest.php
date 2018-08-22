@@ -11,40 +11,44 @@
 
 namespace Vipx\BotDetectBundle\Tests\Security;
 
-use Vipx\BotDetectBundle\Security\BotAuthenticationListener;
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
+use Vipx\BotDetectBundle\Security\BotAuthenticationListener;
 
-class BotAuthenticationListenerTest extends \PHPUnit_Framework_TestCase
+class BotAuthenticationListenerTest extends TestCase
 {
 
     public function testSettingToken()
     {
-        $tokenStorage = $this->getMock(
+        $tokenStorage = $this->getMockBuilder(
             'Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface'
-        );
+        )->getMock();
         $anonymousToken = new AnonymousToken(null, 'anon.');
 
-        $tokenStorage->expects($this->any())
+        $tokenStorage->expects($this->once())
             ->method('getToken')
             ->will($this->returnValue($anonymousToken));
 
-        $tokenStorage->expects($this->any())
+        $tokenStorage->expects($this->once())
             ->method('setToken')
             ->with($this->isInstanceOf('Vipx\BotDetectBundle\Security\BotToken'));
 
-        $botDetector = $this->getMock('Vipx\BotDetect\BotDetectorInterface');
-        $metaData = $this->getMock('Vipx\BotDetect\Metadata\MetadataInterface');
+        $botDetector = $this->getMockBuilder('Vipx\BotDetect\BotDetectorInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $botDetector->expects($this->any())
-            ->method('detectFromRequest')
+        $metaData = $this->getMockBuilder('Vipx\BotDetect\Metadata\MetadataInterface')->getMock();
+
+        $botDetector->expects($this->once())
+            ->method('detect')
             ->will($this->returnValue($metaData));
 
         $listener = new BotAuthenticationListener($tokenStorage, $botDetector);
 
-        $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
+        $kernel = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')->getMock();
         $event = new GetResponseEvent($kernel, new Request(), HttpKernelInterface::MASTER_REQUEST);
 
         $listener->onKernelRequest($event);
