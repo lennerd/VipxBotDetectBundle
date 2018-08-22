@@ -1,25 +1,53 @@
+---
+sudo: false
+
 language: php
 
-php:
-  - 5.5.9
-  - 5.6
-  - hhvm
-  - 7
-
 matrix:
-  allow_failures:
-    - php: 7
+    include:
+        # - php: 5.6
+        #   env:
+        #       - SYMFONY_VERSION=^2.8
+        - php: 5.6
+          env:
+              - SYMFONY_VERSION=^3.4
+              - PHPUNIT_VERSION=^5.7
+        # - php: 7.1
+        #   env:
+        #       - SYMFONY_VERSION=^2.8
+        - php: 7.1
+          env:
+              - SYMFONY_VERSION=^3.4
+              - PHPUNIT_VERSION=^6.4
+        # - php: 7.1
+        #   env:
+        #       - SYMFONY_VERSION=^4.0
+        # - php: 7.2
+        #   env:
+        #       - SYMFONY_VERSION=^2.8
+        - php: 7.2
+          env:
+              - SYMFONY_VERSION=^3.4
+              - PHPUNIT_VERSION=^6.4
+        # - php: 7.2
+        #   env:
+        #       - PHPUNIT_VERSION=^6.4
+        #       - SYMFONY_VERSION=^4.0
 
-before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install --dev --prefer-source --no-interaction
+before_install:
+    - if [ "$SYMFONY_VERSION" != "" ]; then BUNDLES=$(for bundle in $(jq '.require' composer.json | grep -o 'symfony/[a-z\-]*'); do echo $bundle=$SYMFONY_VERSION; done | tr "\n" " "); fi # get all the symfony packages at once, and require the "SYMFONY_VERSION" version
+    - if [ -z "$PHPUNIT_VERSION" ]; then composer require $BUNDLES --update-with-dependencies; fi
+    - if [ -n "$PHPUNIT_VERSION" ]; then composer require $BUNDLES phpunit/phpunit=$PHPUNIT_VERSION --update-with-dependencies; fi
+
+install:
+    - composer install
 
 script:
-  - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
+    - mkdir -p build/logs
+    - phpunit --coverage-clover build/logs/clover.xml
 
 after_script: php vendor/bin/coveralls -v
 
 notifications:
-  email:
-    - hello@lennerd.com
+    email:
+        - hello@lennerd.com
