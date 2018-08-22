@@ -11,14 +11,15 @@
 
 namespace Vipx\BotDetectBundle\Tests\Security;
 
+use PHPUnit\Framework\TestCase;
 use Vipx\BotDetectBundle\Security\BotToken;
 
-class BotTokenTest extends \PHPUnit_Framework_TestCase
+class BotTokenTest extends TestCase
 {
 
     public function testBotRole()
     {
-        $metadata = $this->getMock('Vipx\BotDetect\Metadata\MetadataInterface');
+        $metadata = $this->getMockBuilder('Vipx\BotDetect\Metadata\MetadataInterface')->getMock();
         $token = new BotToken('test', $metadata);
         $roles = $token->getRoles();
 
@@ -30,14 +31,12 @@ class BotTokenTest extends \PHPUnit_Framework_TestCase
             }
         }
 
-        if (!$contains) {
-            $this->fail('The BotToken has no role "ROLE_BOT"');
-        }
+        $this->assertTrue($contains, 'The BotToken has no role "ROLE_BOT"');
     }
 
     public function testCanCreateBotTokenFromAnonymousToken()
     {
-        $metadata = $this->getMock('Vipx\BotDetect\Metadata\MetadataInterface');
+        $metadata = $this->getMockBuilder('Vipx\BotDetect\Metadata\MetadataInterface')->getMock();
 
         $anonymousToken = $this->getMockBuilder('Symfony\Component\Security\Core\Authentication\Token\AnonymousToken')
             ->disableOriginalConstructor()
