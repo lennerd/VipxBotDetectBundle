@@ -39,6 +39,7 @@ matrix:
 
 before_install:
     - if [ "$SYMFONY_VERSION" != "" ]; then BUNDLES=$(for bundle in $(jq '.require' composer.json | grep -o 'symfony/[a-z\-]*'); do echo $bundle=$SYMFONY_VERSION; done | tr "\n" " "); fi # get all the symfony packages at once, and require the "SYMFONY_VERSION" version
+    - if [ "$SYMFONY_VERSION" = "^2.8" ]; then rm composer.lock; fi # lot of conflict between symfony package, I did not managed to fix this, so the easier way is to remove the lock file
     - if [ -z "$PHPUNIT_VERSION" ]; then composer require $BUNDLES --update-with-dependencies; fi
     - if [ -n "$PHPUNIT_VERSION" ]; then composer require $BUNDLES phpunit/phpunit=$PHPUNIT_VERSION --update-with-dependencies; fi
 
