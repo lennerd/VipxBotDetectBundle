@@ -1,25 +1,39 @@
 language: php
 
 php:
-  - 5.5.9
   - 5.6
-  - hhvm
-  - 7
+  - 7.1
+  - 7.2
+
+cache:
+  directories:
+  - $HOME/.composer/cache
 
 matrix:
-  allow_failures:
-    - php: 7
+  fast_finish: true
+  include:
+    - php: 5.6
+      env: DEPENDENCIES="symfony/lts:^2"
+    - php: 7.1
+      env: DEPENDENCIES="symfony/lts:^3"
+    - php: 7.2
+      env: DEPENDENCIES="symfony/lts:^3"
 
-before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install --dev --prefer-source --no-interaction
+before_install:
+  - echo "memory_limit=4G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - if [ "$DEPENDENCIES" != "" ]; then composer require --no-update $DEPENDENCIES; fi;
+
+install:
+  # Install dependencies
+  - composer update --prefer-dist --no-interaction
+  # Install Coveralls
+  - wget -c -nc --retry-connrefused --tries=0 https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+  - chmod +x coveralls.phar
+  - php coveralls.phar --version
 
 script:
   - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
+  - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-after_script: php vendor/bin/coveralls -v
-
-notifications:
-  email:
-    - hello@lennerd.com
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v

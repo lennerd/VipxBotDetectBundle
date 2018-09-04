@@ -11,9 +11,11 @@
 
 namespace Vipx\BotDetectBundle\Tests\Config;
 
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Vipx\BotDetectBundle\Config\MetadataFileLocator;
 
-class MetadataFileLocatorTest extends \PHPUnit_Framework_TestCase
+class MetadataFileLocatorTest extends TestCase
 {
 
     public function testLocate()
@@ -25,7 +27,8 @@ class MetadataFileLocatorTest extends \PHPUnit_Framework_TestCase
 
     private function getFileLocator()
     {
-        $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
+        /** @var KernelInterface $kernel */
+        $kernel = $this->getMockBuilder(KernelInterface::class)->getMock();
 
         return new MetadataFileLocator($kernel);
     }

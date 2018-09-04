@@ -11,11 +11,12 @@
 
 namespace Vipx\BotDetectBundle\Tests\DependencyInjection;
 
-use Vipx\BotDetectBundle\DependencyInjection\VipxBotDetectExtension;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Vipx\BotDetectBundle\DependencyInjection\VipxBotDetectExtension;
 
-class VipxBotDetectExtensionTest extends \PHPUnit_Framework_TestCase
+class VipxBotDetectExtensionTest extends TestCase
 {
 
     const METADATA_FILE = 'test_metadata_file';
