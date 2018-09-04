@@ -14,6 +14,8 @@ use Vipx\BotDetect\Metadata\Metadata;
 
 /**
  * Test a user agent with the Symfony CLI.
+ *
+ * @codeCoverageIgnore
  */
 class TestUserAgentCommand extends ContainerAwareCommand
 {

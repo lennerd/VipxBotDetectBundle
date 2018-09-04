@@ -12,16 +12,17 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "symfony/framework-bundle": "^3.0",
-        "symfony/security-bundle": "^3.0",
-        "vipx/bot-detect": "~1.0"
+        "php": "^5.6|^7.0",
+        "symfony/framework-bundle": "^2.8|^3.0|^4.0",
+        "symfony/security-bundle": "^2.8|^3.0|^4.0",
+        "vipx/bot-detect": "~2.0"
     },
     "require-dev": {
-        "satooshi/php-coveralls": "~0.6"
+        "phpunit/phpunit": "^5.7|^6.5",
+        "php-coveralls/php-coveralls": "^2.1"
     },
     "autoload": {
-        "psr-0": { "Vipx\\BotDetectBundle": "" }
+        "psr-4": { "Vipx\\BotDetectBundle\\": "./" }
     },
     "target-dir": "Vipx/BotDetectBundle",
     "extra": {

@@ -11,12 +11,13 @@
 
 namespace Vipx\BotDetectBundle\Tests\DependencyInjection;
 
-use Vipx\BotDetectBundle\DependencyInjection\Compiler\MetadataResolverPass;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
+use Vipx\BotDetectBundle\DependencyInjection\Compiler\MetadataResolverPass;
 
-class MetadataResolverPassTest extends \PHPUnit_Framework_TestCase
+class MetadataResolverPassTest extends TestCase
 {
 
     const SERVICE_ID = 'test_service';
